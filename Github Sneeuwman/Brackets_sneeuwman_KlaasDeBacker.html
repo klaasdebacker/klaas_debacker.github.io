@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Aframe Environments</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
+    <script src="https://cdn.rawgit.com/feiss/aframe-environment-component/ad57b15d/dist/aframe-environment-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@^4.0.0/dist/aframe-event-set-component.min.js"></script>
+
+  </head>
+  <body>
+
+       <!-- Opgave opdracht 
+            Vul dit Aframe bestand verder aan zoals in het voorbeeld (filmpje)
+            - foto (image) toevoegen
+            - sneeuwman afwerken (lichaam, hoofd met ogen en neus)
+            - Tekst "VR sneeuwman" in het midden zetten (zoals in het filmpje)
+            - hyperlink naar "wiki met sneeuwman"
+            - (vrijblijvend:  texture rond box met hyperlink )
+        -->
+   
+      
+    <a-scene effects="bloom, fxaa" bloom="radius: 0.25" fxaa>
+      <a-assets>      
+            <img id="wolkje" src="Afbeelding%20wolk%20A-Frame.png">
+      </a-assets>        
+        
+        
+        <!-- Camera -->
+		<a-camera>
+			<a-entity cursor="fuse: true; fuseTimeout: 1000" position="0 0 -1"
+					  geometry="primitive: sphere; radius: 0.005"
+					  material="color: #FF0000; shader: flat; opacity: 0.5">
+					  <a-animation attribute="scale"
+					  			   to="3 3 3"
+					  			   dur="1000"
+					  			   begin="cursor-fusing"
+					  			   fill="backwards"
+					  			   easing="linear">
+					  </a-animation>
+			</a-entity>
+		</a-camera>
+        
+        
+        <!-- landschap -->
+        <a-entity id="env1" environment="preset:checkerboard; shadow:true; fog: 0;skyType: atmosphere; lightPosition: 1.08 2.94 0.95"></a-entity>
+
+        <!-- foto -->
+
+        
+        <!-- sneeuwman -->
+        
+        
+     <a-sphere id="bovenste bol" color="yellow" radius="5" position="-4.542 4.815 -8.794" scale="0.16000000000000003 0.16000000000000006 0.15999999999999998" material="color:#ffffff" id="Bovenste bol"></a-sphere>
+        
+       <a-sphere id="middelste bol" color="yellow" radius="5" position="-4.502 3.206 -8.749" scale="0.23 0.23000000000000007 0.22999999999999998" material="color:#ffffff" id="Middelste bol"></a-sphere>
+        
+        <a-sphere id="onderste bol" position="-4.496 1.126 -8.792" radius="1.25" color="white" shadow="" scale="1.1 1.1 1.1"></a-sphere>
+        
+        <a-cone id="hoed" color="brown" radius-bottom="1" radius-top="0" position="-4.813 5.776 -8.894" rotation="-11 -3 15" material="color:#804000" shadow=""></a-cone>
+        
+        
+        <a-sphere id="oog 1" color="yellow" radius="5" position="-4.188 4.944 -8.086" scale="0.029999999999999978 0.029999999999999992 0.03" material="color:#000000"></a-sphere>
+        
+        <a-sphere id="oog 2" color="yellow" radius="5" position="-4.73 5.008 -7.997" scale="0.02999999999999997 0.03000000000000001 0.030000000000000054" material="color:#000000"></a-sphere>
+        
+        <a-cone id="Neus" color="tomato" radius-bottom="2" radius-top="0.5" position="-4.509 4.799 -7.568" rotation="77.92226013779197 63.48372370049522 58.44169510334397" geometry="radiusBottom:0.2;radiusTop:0" id="Neus"></a-cone>
+        
+        
+        <a-cylinder id="arm links" color="crimson" height="3" radius="1.5" position="-5.96 3.935 -8.48" rotation="14.32394487827058 2.1199438419840457 -128.28525032979132" scale="0.09 0.8900000000000001 0.08999999999999989" material="color:#804040"></a-cylinder>
+           
+        <a-cylinder id="arm rechts" color="crimson" height="3" radius="1.5" position="-2.984 4 -8.554" rotation="0 0 -51.96727201836567" scale="0.08999999999999991 0.89 0.08999999999999991" material="color:#800000"></a-cylinder>   
+            
+              
+            <a-sphere id="bovenste knop" color="yellow" radius="5" position="-4.473 3.79 -7.762" scale="0.03 0.03 0.03" material="color:#000000"></a-sphere>
+           
+       
+        <a-sphere id="onderste knop" color="yellow" radius="5" position="-4.476 2.974 -7.677" scale="0.02999999999999997 0.03000000000000001 0.030000000000000054" material="color:#000000"></a-sphere>
+        
+        
+        
+        <!-- tekst -->
+        <a-entity id="tekst VR Sneeuwman" data-brackets-id="272" text="value:..;anchor:left;color:#ffffff;width:2" position="0 0 0" ></a-entity>
+        
+        <a-text value="VR Sneeuwman" "="" position="0 4.186 -4.389" scale="3 3 3" text="color:#0080ff"> </a-text>
+        
+        
+  
+    <!-- box link naar website  -->    
+        <a-entity id="box met weblink" mixin="col1" geometry="" position="4 0.577 -7" 
+                  material="color:#777777;shader:flat;side:double;src:#foto" 
+                  event-set__enter="[object Object]" event-set__leave="[object Object]" 
+                  onclick="location.href='https://nl.wikipedia.org/wiki/Sneeuwpop'" >
+        </a-entity>
+        
+        
+        
+        
+        
+        
+        <a-entity id="link" text="anchor:left;color:#00ff00;value:link;width:3.51" position="3.7 0.8 -6.48"></a-entity>
+        <a-entity id="wiki" text="anchor:left;color:#00ff00;value:Wiki;width:3.51" position="3.7 0.6 -6.48"></a-entity>
+        <a-entity id="Sneeuwman" text="anchor:left;color:#00ff00;value:Sneeuwman;width:3.51" position="3.5 0.4 -6.48">
+        </a-entity>
+        
+        
+
+        
+        
+    </a-scene>
+  </body>
+
+</html>
